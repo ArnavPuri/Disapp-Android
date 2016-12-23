@@ -1,7 +1,9 @@
-package in.teachcoder.disapp_android;
+package in.teachcoder.disapp_android.Activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import in.teachcoder.disapp_android.R;
 
 public class FinalActivity extends AppCompatActivity {
 

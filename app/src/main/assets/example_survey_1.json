@@ -21,7 +21,7 @@
     },
     {
       "question_type": "Radioboxes",
-      "question_title": "Have you seen mosquitoes with white stripes on it’s body and legs during the last two days while you were at home?",
+      "question_title": "Have you seen mosquitoes with white stripes on it's body and legs during the last two days while you were at home?",
       "description": "",
       "required": true,
       "random_choices": false,
@@ -46,7 +46,7 @@
     },
     {
       "question_type": "Radioboxes",
-      "question_title": "4.	Including you, how many members of your family while staying at home with you have gotten dengue in the last one year?",
+      "question_title": "Including you, how many members of your family while staying at home with you have gotten dengue in the last one year?",
       "description": "",
       "required": true,
       "random_choices": false,

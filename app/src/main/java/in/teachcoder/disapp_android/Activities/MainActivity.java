@@ -1,4 +1,4 @@
-package in.teachcoder.disapp_android;
+package in.teachcoder.disapp_android.Activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,9 +11,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.Toast;
 
 import com.androidadvance.androidsurvey.SurveyActivity;
-import com.google.gson.stream.JsonReader;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -25,6 +25,11 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLConnection;
+
+import in.teachcoder.disapp_android.Helpers.Constants;
+import in.teachcoder.disapp_android.Helpers.GPS_Tracker;
+import in.teachcoder.disapp_android.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -44,6 +49,11 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         contact = sharedPreferences.getString(Constants.USER_CONTACT, " ");
         useremail = sharedPreferences.getString(Constants.USER_EMAIL, " ");
+
+        if (useremail == " ") {
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(intent);
+        }
         agreeTerms.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
@@ -89,8 +99,8 @@ public class MainActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
 //                postArray.put(answers_json);
-
-                new SendSurveyResponse().execute("http://139.59.34.32/survey/androidresponse", postArray.toString());
+                Log.d("POST DATA", postArray.toString());
+                new SendSurveyResponse().execute("http://139.59.34.32/survey/androidresponseV2", postArray.toString());
                 SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
                 SharedPreferences.Editor spe = sp.edit();
                 spe.putString(Constants.USER_RESPONSE, answers_json);
@@ -146,6 +156,7 @@ public class MainActivity extends AppCompatActivity {
             String data = "";
 
             HttpURLConnection httpURLConnection = null;
+
             try {
 
                 httpURLConnection = (HttpURLConnection) new URL(params[0]).openConnection();
@@ -159,6 +170,8 @@ public class MainActivity extends AppCompatActivity {
                 wr.close();
 
                 InputStream in = httpURLConnection.getInputStream();
+                int status = httpURLConnection.getResponseCode();
+                Log.d("ConnectionArnav", status + " ");
                 InputStreamReader inputStreamReader = new InputStreamReader(in);
 
                 int inputStreamData = inputStreamReader.read();
@@ -181,7 +194,9 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
-            Log.e("TAG", result); // this is expecting a response code to be sent from your server upon receiving the POST data
+//            Toast.makeText(MainActivity.this, result + " ", Toast.LENGTH_SHORT).show();
+
+            Log.e("Result is", result); // this is expecting a response code to be sent from your server upon receiving the POST data
             Intent resultIntent = new Intent(MainActivity.this, ResultActivity.class);
             startActivity(resultIntent);
         }

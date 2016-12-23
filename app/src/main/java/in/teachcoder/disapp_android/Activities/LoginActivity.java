@@ -1,4 +1,4 @@
-package in.teachcoder.disapp_android;
+package in.teachcoder.disapp_android.Activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,22 +10,26 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import in.teachcoder.disapp_android.Helpers.Constants;
+import in.teachcoder.disapp_android.R;
+
 public class LoginActivity extends AppCompatActivity {
     EditText userEmail, userContact;
     Button submit;
     SharedPreferences sp;
+    String existingEmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
-        String existingEmail = sharedPreferences.getString(Constants.USER_EMAIL, "");
-        Log.d("Login", existingEmail);
-        if(!existingEmail.equals("")){
-            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-            startActivity(intent);
-        }
+        existingEmail = sharedPreferences.getString(Constants.USER_EMAIL, "");
+//        Log.d("UserInfo", existingEmail);
+//        if(!existingEmail.equals("")){
+//            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+//            startActivity(intent);
+//        }
         sp = PreferenceManager.getDefaultSharedPreferences(this);
         submit = (Button) findViewById(R.id.login_button);
         userEmail = (EditText) findViewById(R.id.email);
@@ -34,6 +38,7 @@ public class LoginActivity extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+//                Log.d("UserInfo", existingEmail);
                 SharedPreferences.Editor spe = sp.edit();
                 spe.putString(Constants.USER_EMAIL, userEmail.getText().toString());
                 spe.putString(Constants.USER_CONTACT, userContact.getText().toString());

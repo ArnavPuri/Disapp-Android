@@ -1,10 +1,12 @@
-package in.teachcoder.disapp_android;
+package in.teachcoder.disapp_android.Activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import in.teachcoder.disapp_android.R;
 
 public class ResultActivity extends AppCompatActivity {
 

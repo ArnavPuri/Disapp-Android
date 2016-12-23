@@ -1,4 +1,4 @@
-package in.teachcoder.disapp_android;
+package in.teachcoder.disapp_android.Helpers;
 
 import android.app.AlertDialog;
 import android.app.Service;
