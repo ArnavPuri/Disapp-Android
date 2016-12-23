@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">DisApp - Risk Assesment</string>
+    <string name="title_home">Welcome to DisApp!</string>
+    <string name="app_desc">Disapp will give you an idea of the risk of catching dengue while at home, based on your answers to the 5 questions you will be asked at the beginning. Disapp will also give you some practical suggestions of how to bring down your risk for catching dengue while you are at home. Finally, please fill out the feedback form at the end so we can make Disapp even better for everyone! Thank you for using Disapp!</string>
+    <string name="app_terms">Disclaimer and Terms of Use: Disapp is purely meant as a free educational tool to teach users about dengue risk and how to reduce it. It is not meant to diagnose dengue infection or to be a substitute for qualified medical advice. No guarantee is made as to the accuracy of the provided risk estimate and the developers are not liable in any way for any issues that may arise from your use of Disapp.</string>
+    <string name="accept_terms">I accept the above disclaimer and terms of use</string>
+    <string name="title_activity_login">DisApp - Risk Assesment</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password (optional)</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+</resources>

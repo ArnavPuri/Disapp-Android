@@ -1,0 +1,75 @@
+{
+  "survey_properties": {
+    "intro_message": "<strong>Your feedback helps us to build a better mobile product.</strong><br><br><br>   Hello, Feedback from our clients, friends and family is how we make key decisions on what the future holds for XYZ App.<br><br>By combining data and previous feedback we have introduced many new features e.g. x, y, z.<br><br>It will take less than 2 minutes to answer the feedback quiz.",
+    "end_message": "Thank you for having the time to take our survey.",
+    "skip_intro": true
+  },
+  "questions": [
+    {
+      "question_type": "Radioboxes",
+      "question_title": "How many mosquitos have you noticed (seen or heard) during the last two days while you were at home?",
+      "description": "Select one",
+      "required": true,
+      "random_choices": false,
+      "choices": [
+        "None",
+        "Very few (1-2)",
+        "Some (3-10)",
+        "High (more than 10)",
+        "Don't Know"
+      ]
+    },
+    {
+      "question_type": "Radioboxes",
+      "question_title": "Have you seen mosquitoes with white stripes on it’s body and legs during the last two days while you were at home?",
+      "description": "",
+      "required": true,
+      "random_choices": false,
+      "choices": [
+        "Yes",
+        "No"
+      ]
+    },
+    {
+      "question_type": "Radioboxes",
+      "question_title": "Approximately how many mosquito bites have you received in the last two days while you were at home?",
+      "description": "",
+      "required": true,
+      "random_choices": false,
+      "choices": [
+        "None",
+        "Very few (1-2)",
+        "Some (3-10)",
+        "High (more than 10)",
+        "Don't Know"
+      ]
+    },
+    {
+      "question_type": "Radioboxes",
+      "question_title": "4.	Including you, how many members of your family while staying at home with you have gotten dengue in the last one year?",
+      "description": "",
+      "required": true,
+      "random_choices": false,
+      "choices": [
+        "No one",
+        "1",
+        "2",
+        "More than 2"
+      ]
+    },
+    {
+      "question_title": "Have you heard of any cases of dengue in your neighborhood in the last one month, including cases in local hospitals?",
+      "description": "",
+      "required": true,
+      "random_choices": false,
+      "question_type": "Radioboxes",
+      "choices": [
+        "No Dengue",
+        "Very few (1-2)",
+        "Some (3-10)",
+        "High (more than 10)",
+        "Don't Know"
+      ]
+    }
+  ]
+}
