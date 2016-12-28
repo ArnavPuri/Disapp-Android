@@ -2,7 +2,6 @@ package in.teachcoder.disapp_android.Activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
@@ -11,7 +10,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
-import android.widget.Toast;
 
 import com.androidadvance.androidsurvey.SurveyActivity;
 
@@ -19,23 +17,19 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLConnection;
 
 import in.teachcoder.disapp_android.Helpers.Constants;
 import in.teachcoder.disapp_android.Helpers.GPS_Tracker;
+import in.teachcoder.disapp_android.Helpers.RequestHandler;
 import in.teachcoder.disapp_android.R;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final int SURVEY_REQUEST = 1338;
     String useremail, contact;
-    double userLatitude , userLongitude;
+    double userLatitude, userLongitude;
 
 
     @Override
@@ -100,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
                 }
 //                postArray.put(answers_json);
                 Log.d("POST DATA", postArray.toString());
-                new SendSurveyResponse().execute("http://139.59.34.32/survey/androidresponseV2", postArray.toString());
+                new RequestHandler(MainActivity.this, true).execute(Constants.SUBMIT_URL, postArray.toString());
                 SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
                 SharedPreferences.Editor spe = sp.edit();
                 spe.putString(Constants.USER_RESPONSE, answers_json);
@@ -132,73 +126,68 @@ public class MainActivity extends AppCompatActivity {
 
             userLatitude = gps.getLatitude();
             userLongitude = gps.getLongitude();
-            Log.d("Location", "lat" + (long) userLatitude);
             SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
             SharedPreferences.Editor spe = sp.edit();
             spe.putLong(Constants.USER_LONGITUDE, (long) userLongitude);
             spe.putLong(Constants.USER_LATITUDE, (long) userLongitude);
             spe.apply();
-            // \n is for new line
-//            Toast.makeText(getApplicationContext(), "Your Location is - \nLat: " + latitude + "\nLong: " + longitude, Toast.LENGTH_LONG).show();
+
         } else {
-            // Can't get location.
-            // GPS or network is not enabled.
-            // Ask user to enable GPS/network in settings.
             gps.showSettingsAlert();
         }
     }
 
-    private class SendSurveyResponse extends AsyncTask<String, Void, String> {
-
-        @Override
-        protected String doInBackground(String... params) {
-
-            String data = "";
-
-            HttpURLConnection httpURLConnection = null;
-
-            try {
-
-                httpURLConnection = (HttpURLConnection) new URL(params[0]).openConnection();
-                httpURLConnection.setRequestMethod("POST");
-
-                httpURLConnection.setDoOutput(true);
-
-                DataOutputStream wr = new DataOutputStream(httpURLConnection.getOutputStream());
-                wr.writeBytes(params[1]);
-                wr.flush();
-                wr.close();
-
-                InputStream in = httpURLConnection.getInputStream();
-                int status = httpURLConnection.getResponseCode();
-                Log.d("ConnectionArnav", status + " ");
-                InputStreamReader inputStreamReader = new InputStreamReader(in);
-
-                int inputStreamData = inputStreamReader.read();
-                while (inputStreamData != -1) {
-                    char current = (char) inputStreamData;
-                    inputStreamData = inputStreamReader.read();
-                    data += current;
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            } finally {
-                if (httpURLConnection != null) {
-                    httpURLConnection.disconnect();
-                }
-            }
-
-            return data;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            super.onPostExecute(result);
-//            Toast.makeText(MainActivity.this, result + " ", Toast.LENGTH_SHORT).show();
-
-            Log.e("Result is", result); // this is expecting a response code to be sent from your server upon receiving the POST data
-            Intent resultIntent = new Intent(MainActivity.this, ResultActivity.class);
-            startActivity(resultIntent);
-        }
-    }
+//    private class SendSurveyResponse extends AsyncTask<String, Void, String> {
+//
+//        @Override
+//        protected String doInBackground(String... params) {
+//
+//            String data = "";
+//
+//            HttpURLConnection httpURLConnection = null;
+//
+//            try {
+//
+//                httpURLConnection = (HttpURLConnection) new URL(params[0]).openConnection();
+//                httpURLConnection.setRequestMethod("POST");
+//
+//                httpURLConnection.setDoOutput(true);
+//
+//                DataOutputStream wr = new DataOutputStream(httpURLConnection.getOutputStream());
+//                wr.writeBytes(params[1]);
+//                wr.flush();
+//                wr.close();
+//
+//                InputStream in = httpURLConnection.getInputStream();
+//                int status = httpURLConnection.getResponseCode();
+//                Log.d("ConnectionArnav", status + " ");
+//                InputStreamReader inputStreamReader = new InputStreamReader(in);
+//
+//                int inputStreamData = inputStreamReader.read();
+//                while (inputStreamData != -1) {
+//                    char current = (char) inputStreamData;
+//                    inputStreamData = inputStreamReader.read();
+//                    data += current;
+//                }
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            } finally {
+//                if (httpURLConnection != null) {
+//                    httpURLConnection.disconnect();
+//                }
+//            }
+//
+//            return data;
+//        }
+//
+//        @Override
+//        protected void onPostExecute(String result) {
+//            super.onPostExecute(result);
+////            Toast.makeText(MainActivity.this, result + " ", Toast.LENGTH_SHORT).show();
+//
+//            Log.e("Result is", result); // this is expecting a response code to be sent from your server upon receiving the POST data
+//            Intent resultIntent = new Intent(MainActivity.this, ResultActivity.class);
+//            startActivity(resultIntent);
+//        }
+//    }
 }

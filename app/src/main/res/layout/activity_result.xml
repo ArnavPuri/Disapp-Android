@@ -24,6 +24,16 @@
         android:layout_height="wrap_content"
         android:text="See preventive measures"
         android:background="#eb3cafd9"
+        android:layout_marginTop="12dp"
+        android:textColor="@color/black"/>
+
+    <Button
+        android:id="@+id/take_feedback"
+        android:layout_marginTop="12dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Give Feedback"
+        android:background="#eb3cafd9"
         android:textColor="@color/black"/>
 
 

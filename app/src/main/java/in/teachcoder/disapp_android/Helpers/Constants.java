@@ -11,4 +11,10 @@ public class Constants {
     public static String USER_RESPONSE = "response";
     public static String USER_LATITUDE = "latitude";
     public static String USER_LONGITUDE = "longitude";
+
+    public static String BASE_URL = "http://139.59.34.32/survey";
+    public static String FEEDBACK_URL = BASE_URL + "/androidfeedback";
+    public static String SUBMIT_URL = BASE_URL + "/androidresponseV2";
+
+
 }

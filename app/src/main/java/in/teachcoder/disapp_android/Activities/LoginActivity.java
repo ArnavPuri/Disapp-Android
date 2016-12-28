@@ -23,13 +23,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        SharedPreferences sharedPreferences = getPreferences(MODE_PRIVATE);
-        existingEmail = sharedPreferences.getString(Constants.USER_EMAIL, "");
-//        Log.d("UserInfo", existingEmail);
-//        if(!existingEmail.equals("")){
-//            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-//            startActivity(intent);
-//        }
+
         sp = PreferenceManager.getDefaultSharedPreferences(this);
         submit = (Button) findViewById(R.id.login_button);
         userEmail = (EditText) findViewById(R.id.email);
@@ -38,7 +32,6 @@ public class LoginActivity extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Log.d("UserInfo", existingEmail);
                 SharedPreferences.Editor spe = sp.edit();
                 spe.putString(Constants.USER_EMAIL, userEmail.getText().toString());
                 spe.putString(Constants.USER_CONTACT, userContact.getText().toString());

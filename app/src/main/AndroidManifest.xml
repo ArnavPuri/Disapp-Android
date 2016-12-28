@@ -26,10 +26,9 @@
         <activity android:name=".Activities.ResultActivity" />
         <activity
             android:name=".Activities.LoginActivity"
-            android:label="@string/title_activity_login">
-
-        </activity>
-        <activity android:name=".Activities.FinalActivity"/>
+            android:label="@string/title_activity_login"></activity>
+        <activity android:name=".Activities.FinalActivity" />
+        <activity android:name=".Activities.FeedbackActivity"></activity>
     </application>
 
 </manifest>

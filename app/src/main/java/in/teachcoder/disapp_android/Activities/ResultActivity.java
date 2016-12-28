@@ -15,10 +15,19 @@ public class ResultActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
         Button btn = (Button) findViewById(R.id.next_step);
+        Button feedbackBtn = (Button) findViewById(R.id.take_feedback);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(ResultActivity.this ,FinalActivity.class);
+                startActivity(i);
+            }
+        });
+
+        feedbackBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(ResultActivity.this ,FeedbackActivity.class);
                 startActivity(i);
             }
         });
